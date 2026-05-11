@@ -1,4 +1,7 @@
-app = Flask(__name__)
+import os
+import requests
+from flask import Flask, request, jsonify
+import anthropicapp = Flask(__name__)
 
 ULTRAMSG_TOKEN = os.environ.get("ULTRAMSG_TOKEN", "h678qqkz2cws7dt5")
 ULTRAMSG_INSTANCE = os.environ.get("ULTRAMSG_INSTANCE", "instance174569")
