@@ -1,10 +1,9 @@
-
-import anthropic
-
-app = Flask(__name__)import os
+import os
 import requests
 from flask import Flask, request, jsonify
-import anthropicapp = Flask(__name__)
+import anthropic
+
+app = Flask(__name__)
 
 ULTRAMSG_TOKEN = os.environ.get("ULTRAMSG_TOKEN", "h678qqkz2cws7dt5")
 ULTRAMSG_INSTANCE = os.environ.get("ULTRAMSG_INSTANCE", "instance174569")
@@ -51,6 +50,8 @@ def send_whatsapp_message(to, message):
 @app.route("/webhook", methods=["POST"])
 def webhook():
     payload = request.json or {}
+
+    # UltraMsg wraps message data inside a "data" key
     data = payload.get("data", payload)
 
     if data.get("type") != "chat":
